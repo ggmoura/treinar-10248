@@ -13,6 +13,8 @@ public class TesteObjeto {
 		c = new Conta();
 		System.out.println(c.numero);
 		c2 = new Conta();
+		//tenta acessar regiao de memoria nao reservada
+		c2.cliente = new Cliente();
 		System.out.println(c2.cliente.nome);
 	}
 }
