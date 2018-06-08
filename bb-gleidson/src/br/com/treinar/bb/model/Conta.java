@@ -5,6 +5,19 @@ public class Conta {
 	public int numero;
 	public double saldo;
 	public Cliente cliente;
+	public double limiteCredito;
+	
+	public Conta() {
+		super();
+	}
+	
+	public Conta(double limiteCredito) {
+		this.limiteCredito = limiteCredito;
+	}
+	
+	public Conta(double limiteCredito, String cliente) {
+		this(limiteCredito);
+	}
 
 	public boolean sacar(double valor) {
 		boolean deuParaSacar = false;

@@ -37,7 +37,8 @@ public class Main {
 	}
 
 	private static void criarConta() {
-		Conta c = new Conta();
+		Conta c = new Conta(300);
+		System.out.println(c.limiteCredito);
 		System.out.print("Informe o numer: ");
 		c.numero = input.nextInt();
 		
