@@ -8,12 +8,12 @@ public class TelaCadastroBB {
 
 	private BancoController controller;
 	private Scanner input;
-	
+
 	public TelaCadastroBB() {
 		controller = new BancoController();
 		input = new Scanner(System.in);
 	}
-	
+
 	public void iniciarOperacao() {
 		int opcao;
 		do {
@@ -24,7 +24,7 @@ public class TelaCadastroBB {
 				controller.criarConta();
 				break;
 			case 2:
-				depositar();	
+				depositar();
 				break;
 			case 3:
 				imprimirSaldo();
@@ -33,13 +33,13 @@ public class TelaCadastroBB {
 				break;
 
 			default:
-				System.out.println("OPÇÃO INVÁLIDA DIGITE NOVAMENTE");			
+				System.out.println("OPÇÃO INVÁLIDA DIGITE NOVAMENTE");
 				break;
 			}
 		} while (opcao != 0);
-		
+
 		input.close();
-		
+
 	}
 
 	private void imprimirSaldo() {
@@ -52,12 +52,7 @@ public class TelaCadastroBB {
 	}
 
 	private static void imprimirMenu() {
-		System.out.print(""
-			+ "Informe a opcão:\n"
-			+ "\t0 - Sair\n"
-			+ "\\t1 - Criar Conta\\n"
-			+ "\t\n=> "
-		);
+		System.out.print("" + "Informe a opcão:\n" + "\t0 - Sair\n" + "\\t1 - Criar Conta\\n" + "\t\n=> ");
 	}
-	
+
 }
