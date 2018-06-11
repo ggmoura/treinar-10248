@@ -53,6 +53,12 @@ public class TelaCadastroBB {
 
 	private static void imprimirMenu() {
 		System.out.print("" + "Informe a opcão:\n" + "\t0 - Sair\n" + "\\t1 - Criar Conta\\n" + "\t\n=> ");
+		System.out.print(""
+			+ "Informe a opcão:\n"
+			+ "\t0 - Sair\n"
+			+ "\t1 - Criar Conta\\n"
+			+ "\t\n=> "
+		);
 	}
 
 }
