@@ -1,11 +1,12 @@
-package br.com.treinar.bb.model;
+package br.com.treinar.bb.model.banco;
+
+import br.com.treinar.bb.model.Cliente;
 
 public class Conta {
 
 	private int numero;
 	private double saldo;
 	private Cliente cliente;
-	private double limiteCredito;
 
 	public int getNumero() {
 		return numero;
@@ -31,28 +32,9 @@ public class Conta {
 		this.cliente = cliente;
 	}
 
-	public double getLimiteCredito() {
-		return limiteCredito;
-	}
-
-	public void setLimiteCredito(double limiteCredito) {
-		this.limiteCredito = limiteCredito;
-	}
-
 	public Conta() {
 		super();
 		System.out.println("O Objeto foi criado");
-	}
-
-	public Conta(double limiteCredito) {
-		this();
-		this.limiteCredito = limiteCredito;
-	}
-
-	public Conta(double limiteCredito, String nomeCliente) {
-		this(limiteCredito);
-		this.cliente = new Cliente();
-		this.cliente.setNome(nomeCliente);
 	}
 
 	public boolean sacar(double valor) {
