@@ -29,7 +29,7 @@ public class TelaCadastroBB {
 				criarConta();
 				break;
 			case 2:
-				depositar();
+				System.out.println();
 				break;
 			case 3:
 				exibirSaldo();
@@ -49,6 +49,7 @@ public class TelaCadastroBB {
 		input.close();
 	}
 
+<<<<<<< HEAD
 	private void sacar() {
 		System.out.print("Valor a ser sacado: ");
 		controller.sacar(input.nextDouble());
@@ -81,6 +82,36 @@ public class TelaCadastroBB {
 		controller.criarConta(cs);
 	}
 
+=======
+	private void criarConta() {
+		System.out.print("Digite:\n\t1 - Conta Corrente\n\t2 - Conta Poupança\n\t3 - Conta Salario\n=> ");
+		int opcao = input.nextInt();
+		switch (opcao) {
+		case 1:
+			criarContaCorrente();
+			break;
+		case 2:
+			criarContaPoupanca();
+			break;
+		case 3:
+			criarContaSalario();
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	private void criarContaSalario() {
+		ContaSalario cs = new ContaSalario();
+		criarContaGenerica(cs);
+		System.out.print("Informe o dia de credito do salario: ");
+		int diaCreditoSalario = input.nextInt();
+		cs.setDiaCreditoSalario(diaCreditoSalario);
+		controller.criarConta(cs);
+	}
+
+>>>>>>> 89c122f107501f4e19da8143dcae8f650fbee61c
 	private void criarContaPoupanca() {
 		ContaPoupanca cp = new ContaPoupanca();
 		criarContaGenerica(cp);
@@ -96,7 +127,10 @@ public class TelaCadastroBB {
 		System.out.print("Informe o limite de credito: ");
 		double limiteCredito = input.nextDouble();
 		cc.setLimiteCredito(limiteCredito);
+<<<<<<< HEAD
 		cc.setLimiteCreditoAtual(limiteCredito);
+=======
+>>>>>>> 89c122f107501f4e19da8143dcae8f650fbee61c
 		controller.criarConta(cc);
 	}
 
@@ -115,9 +149,14 @@ public class TelaCadastroBB {
 		conta.setNumero(numeroConta);
 	}
 	
+<<<<<<< HEAD
 	private void exibirSaldo() {
 		double saldo = controller.recuperarSaldo();
 		System.out.println("Saldo atual: " + saldo);
+=======
+	private void imprimirSaldo() {
+		System.out.println("Saldo atual: " + controller.getConta().getSaldo());
+>>>>>>> 89c122f107501f4e19da8143dcae8f650fbee61c
 	}
 
 	private void depositar() {
