@@ -8,8 +8,6 @@ public class Main {
 		TelaCadastroBB cadastro = new TelaCadastroBB();
 		cadastro.iniciarOperacao();
 		System.out.println("good-by");
-		
-		//blah
 	}
 	
 }
