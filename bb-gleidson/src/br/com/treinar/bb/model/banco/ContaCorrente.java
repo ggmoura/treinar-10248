@@ -21,4 +21,33 @@ public class ContaCorrente extends Conta {
 		this.limiteCreditoAtual = limiteCreditoAtual;
 	}
 
+	@Override
+	public boolean sacar(double valor) {
+		boolean deuParaSacar = true;
+		if (valor <= getSaldo() + this.limiteCreditoAtual) {
+			if (valor <= getSaldo()) {
+				setSaldo(getSaldo() - valor);
+			} else {
+				limiteCreditoAtual = limiteCreditoAtual - (getSaldo() - valor);
+				setSaldo(0);
+			}
+		} else {
+			deuParaSacar = false;
+		}
+		return deuParaSacar;
+	}
+	
+	@Override
+	public void depositar(double valorDeposito) {
+		double valorDevido = this.limiteCreditoAtual - this.limiteCredito;
+		if (valorDevido == 0) {
+			setSaldo(getSaldo() + valorDeposito);
+		} else {
+			if (valorDeposito > valorDevido) {
+				setSaldo(valorDeposito - valorDevido);
+				this.limiteCreditoAtual += valorDevido;
+			}
+		}
+	}
+	
 }

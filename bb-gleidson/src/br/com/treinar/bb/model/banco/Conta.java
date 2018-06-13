@@ -2,7 +2,7 @@ package br.com.treinar.bb.model.banco;
 
 import br.com.treinar.bb.model.Cliente;
 
-public class Conta {
+public abstract class Conta {
 
 	private int numero;
 	private double saldo;
@@ -45,10 +45,8 @@ public class Conta {
 		}
 		return deuParaSacar;
 	}
-
-	public void depositar(double valor) {
-		saldo += valor;
-	}
+	
+	public abstract void depositar(double valor);
 
 	public double consultarSaldo() {
 		return this.saldo;

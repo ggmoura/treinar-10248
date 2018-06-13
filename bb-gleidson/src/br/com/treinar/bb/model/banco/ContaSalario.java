@@ -12,6 +12,9 @@ public class ContaSalario extends Conta {
 		this.diaCreditoSalario = diaCreditoSalario;
 	}
 	
-	
-	
+	@Override
+	public void depositar(double valor) {
+		setSaldo(getSaldo() + valor);
+	}
+
 }
