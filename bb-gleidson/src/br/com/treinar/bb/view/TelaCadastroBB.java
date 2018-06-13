@@ -41,50 +41,21 @@ public class TelaCadastroBB {
 				break;
 
 			default:
-				System.out.println("OPÇÃO INVÁLIDA DIGITE NOVAMENTE");			
+				System.out.println("OPï¿½ï¿½O INVï¿½LIDA DIGITE NOVAMENTE");
 				break;
 			}
 		} while (opcao != 0);
 		
 		input.close();
 	}
-
-<<<<<<< HEAD
+	
 	private void sacar() {
 		System.out.print("Valor a ser sacado: ");
 		controller.sacar(input.nextDouble());
 	}
 
 	private void criarConta() {
-		System.out.print("Digite:\n\t1 - Conta Corrente\n\t2 - Conta Poupança\n\t3 - Conta Salario\n=> ");
-		int opcao = input.nextInt();
-		switch (opcao) {
-		case 1:
-			criarContaCorrente();
-			break;
-		case 2:
-			criarContaPoupanca();
-			break;
-		case 3:
-			criarContaSalario();
-			break;
-		default:
-			break;
-		}
-	}
-
-	private void criarContaSalario() {
-		ContaSalario cs = new ContaSalario();
-		criarContaGenerica(cs);
-		System.out.print("Informe o dia de credito do salario: ");
-		int diaCreditoSalario = input.nextInt();
-		cs.setDiaCreditoSalario(diaCreditoSalario);
-		controller.criarConta(cs);
-	}
-
-=======
-	private void criarConta() {
-		System.out.print("Digite:\n\t1 - Conta Corrente\n\t2 - Conta Poupança\n\t3 - Conta Salario\n=> ");
+		System.out.print("Digite:\n\t1 - Conta Corrente\n\t2 - Conta Poupanï¿½a\n\t3 - Conta Salario\n=> ");
 		int opcao = input.nextInt();
 		switch (opcao) {
 		case 1:
@@ -111,7 +82,6 @@ public class TelaCadastroBB {
 		controller.criarConta(cs);
 	}
 
->>>>>>> 89c122f107501f4e19da8143dcae8f650fbee61c
 	private void criarContaPoupanca() {
 		ContaPoupanca cp = new ContaPoupanca();
 		criarContaGenerica(cp);
@@ -127,10 +97,7 @@ public class TelaCadastroBB {
 		System.out.print("Informe o limite de credito: ");
 		double limiteCredito = input.nextDouble();
 		cc.setLimiteCredito(limiteCredito);
-<<<<<<< HEAD
 		cc.setLimiteCreditoAtual(limiteCredito);
-=======
->>>>>>> 89c122f107501f4e19da8143dcae8f650fbee61c
 		controller.criarConta(cc);
 	}
 
@@ -148,15 +115,13 @@ public class TelaCadastroBB {
 		conta.getCliente().setCpf(cpfCliente);
 		conta.setNumero(numeroConta);
 	}
-	
-<<<<<<< HEAD
 	private void exibirSaldo() {
 		double saldo = controller.recuperarSaldo();
 		System.out.println("Saldo atual: " + saldo);
-=======
+	}
+	
 	private void imprimirSaldo() {
 		System.out.println("Saldo atual: " + controller.getConta().getSaldo());
->>>>>>> 89c122f107501f4e19da8143dcae8f650fbee61c
 	}
 
 	private void depositar() {
@@ -166,7 +131,7 @@ public class TelaCadastroBB {
 
 	private static void imprimirMenu() {
 		System.out.print(""
-			+ "Informe a opcão:\n"
+			+ "Informe a opcï¿½o:\n"
 			+ "\t0 - Sair\n"
 			+ "\t1 - Criar Conta\n"
 			+ "\t2 - Depositar\n"
