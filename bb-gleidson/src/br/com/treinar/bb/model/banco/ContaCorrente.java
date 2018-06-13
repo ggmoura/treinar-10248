@@ -38,6 +38,12 @@ public class ContaCorrente extends Conta {
 	}
 	
 	@Override
+	public double consultarSaldo() {
+		double saldoAtual = super.consultarSaldo();
+		return saldoAtual + limiteCreditoAtual;
+	}
+	
+	@Override
 	public void depositar(double valorDeposito) {
 		double valorDevido = this.limiteCreditoAtual - this.limiteCredito;
 		if (valorDevido == 0) {

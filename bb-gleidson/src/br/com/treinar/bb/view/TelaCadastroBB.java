@@ -29,7 +29,7 @@ public class TelaCadastroBB {
 				criarConta();
 				break;
 			case 2:
-				System.out.println();
+				depositar();
 				break;
 			case 3:
 				exibirSaldo();
@@ -41,7 +41,7 @@ public class TelaCadastroBB {
 				break;
 
 			default:
-				System.out.println("OPï¿½ï¿½O INVï¿½LIDA DIGITE NOVAMENTE");
+				System.out.println("Opcção inválida");
 				break;
 			}
 		} while (opcao != 0);
@@ -131,7 +131,7 @@ public class TelaCadastroBB {
 
 	private static void imprimirMenu() {
 		System.out.print(""
-			+ "Informe a opcï¿½o:\n"
+			+ "Informe a opção:\n"
 			+ "\t0 - Sair\n"
 			+ "\t1 - Criar Conta\n"
 			+ "\t2 - Depositar\n"

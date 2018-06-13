@@ -19,11 +19,10 @@ public class BancoController {
 	}
 
 	public void depositar(double valor) {
-		conta.depositar(valor);
 	}
 
 	public double recuperarSaldo() {
-		return conta.getSaldo();
+		return conta.consultarSaldo();
 	}
 
 	public void sacar(double valor) {
