@@ -20,14 +20,15 @@ public class BancoController {
 	}
 
 	public void depositar(double valor) {
+		conta.depositar(valor);
 	}
 
 	public double recuperarSaldo() {
 		return conta.consultarSaldo();
 	}
 
-	public void sacar(double valor) {
-		conta.sacar(valor);
+	public boolean sacar(double valor) {
+		return conta.sacar(valor);
 	}
 
 	public void alterarTaxaRendimento(float novaTaxa) {

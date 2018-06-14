@@ -63,7 +63,9 @@ public class TelaCadastroBB {
 
 	private void sacar() {
 		System.out.print("Valor a ser sacado: ");
-		controller.sacar(input.nextDouble());
+		boolean sacou = controller.sacar(input.nextDouble());
+		String mensagem = sacou ? "Saque efetuado com sucesso" : "Saldo insuficiente";
+		System.out.println(mensagem);
 	}
 
 	private void criarConta() {

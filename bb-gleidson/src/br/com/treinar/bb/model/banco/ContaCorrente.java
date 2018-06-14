@@ -1,7 +1,8 @@
 package br.com.treinar.bb.model.banco;
 
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements IProdutoPagavel {
 
+	private double va1orPagar;
 	private double limiteCredito;
 	private double limiteCreditoAtual;
 
@@ -28,7 +29,7 @@ public class ContaCorrente extends Conta {
 			if (valor <= getSaldo()) {
 				setSaldo(getSaldo() - valor);
 			} else {
-				limiteCreditoAtual = limiteCreditoAtual - (getSaldo() - valor);
+				limiteCreditoAtual = limiteCreditoAtual - (valor - getSaldo());
 				setSaldo(0);
 			}
 		} else {
@@ -54,6 +55,21 @@ public class ContaCorrente extends Conta {
 				this.limiteCreditoAtual += valorDevido;
 			}
 		}
+	}
+
+	@Override
+	public double getValorPagar() {
+		return this.va1orPagar;
+	}
+
+	@Override
+	public void setValorPaga(double valorPagar) {
+		this.va1orPagar = valorPagar;
+	}
+
+	@Override
+	public void efetuarPagamento() {
+		super.sacar(this.va1orPagar);
 	}
 	
 }
