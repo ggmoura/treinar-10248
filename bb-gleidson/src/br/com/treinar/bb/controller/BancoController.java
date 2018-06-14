@@ -2,11 +2,12 @@ package br.com.treinar.bb.controller;
 
 import br.com.treinar.bb.model.banco.Conta;
 import br.com.treinar.bb.model.banco.ContaPoupanca;
+import br.com.treinar.bb.model.banco.IProdutoPagavel;
 
 public class BancoController {
 
 	private Conta conta;
-	
+
 	public void criarConta(Conta conta) {
 		this.conta = conta;
 	}
@@ -37,5 +38,11 @@ public class BancoController {
 
 	public float recuperarTaxaRendimento() {
 		return ContaPoupanca.getTaxaRendimento();
+	}
+
+	public void cobrarMensalidade() {
+		if (conta instanceof IProdutoPagavel) {
+			((IProdutoPagavel) conta).pagarValorMensalidade();			
+		}
 	}
 }

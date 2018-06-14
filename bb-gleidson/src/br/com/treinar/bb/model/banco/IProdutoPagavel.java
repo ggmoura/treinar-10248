@@ -4,8 +4,8 @@ public interface IProdutoPagavel {
 
 	double getValorPagar();
 
-	void setValorPaga(double valorPaga);
+	void setValorPagar(double valorPaga);
 	
-	void efetuarPagamento();
+	void pagarValorMensalidade();
 	
 }

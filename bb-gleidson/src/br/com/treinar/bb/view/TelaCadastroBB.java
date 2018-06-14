@@ -43,6 +43,9 @@ public class TelaCadastroBB {
 			case 6:
 				exibirTaxaRendimento();
 				break;
+			case 7:
+				cobrarMensalidade();
+				break;
 			case 0:
 				break;
 
@@ -55,6 +58,10 @@ public class TelaCadastroBB {
 		input.close();
 	}
 	
+	private void cobrarMensalidade() {
+		controller.cobrarMensalidade();
+	}
+
 	private void alterarTaxaRendimento() {
 		System.out.print("Informe a taxa de rendimento: ");
 		float taxaRendimento = input.nextFloat();
@@ -93,6 +100,8 @@ public class TelaCadastroBB {
 		System.out.print("Informe o dia de credito do salario: ");
 		int diaCreditoSalario = input.nextInt();
 		cs.setDiaCreditoSalario(diaCreditoSalario);
+		System.out.print("Informe valor do produto: ");
+		cs.setValorPagar(input.nextDouble());
 		controller.criarConta(cs);
 	}
 
@@ -109,6 +118,8 @@ public class TelaCadastroBB {
 		double limiteCredito = input.nextDouble();
 		cc.setLimiteCredito(limiteCredito);
 		cc.setLimiteCreditoAtual(limiteCredito);
+		System.out.print("Informe valor do produto: ");
+		cc.setValorPagar(input.nextDouble());
 		controller.criarConta(cc);
 	}
 
@@ -149,6 +160,7 @@ public class TelaCadastroBB {
 			+ "\t4 - Sacar\n"
 			+ "\t5 - Alterar Taxa de Rendimento\n"
 			+ "\t6 - Exibir Taxa de Rendimento\n"
+			+ "\t7 - Tarifar contas\n"
 			+ "\t\n=> "
 		);
 	}

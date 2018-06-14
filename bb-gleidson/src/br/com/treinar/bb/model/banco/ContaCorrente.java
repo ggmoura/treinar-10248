@@ -63,12 +63,12 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	}
 
 	@Override
-	public void setValorPaga(double valorPagar) {
+	public void setValorPagar(double valorPagar) {
 		this.va1orPagar = valorPagar;
 	}
 
 	@Override
-	public void efetuarPagamento() {
+	public void pagarValorMensalidade() {
 		super.sacar(this.va1orPagar);
 	}
 	
