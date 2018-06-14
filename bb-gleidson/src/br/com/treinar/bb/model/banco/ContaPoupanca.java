@@ -4,15 +4,19 @@ import java.util.Calendar;
 
 public class ContaPoupanca extends Conta {
 
-	private float taxaRendimento;
+	private static float taxaRendimento;
 	private int diaUltimoDeposito;
+	
+	static {
+		taxaRendimento = 0.02f;
+	}
 
-	public float getTaxaRendimento() {
+	public static float getTaxaRendimento() {
 		return taxaRendimento;
 	}
 
-	public void setTaxaRendimento(float taxaRendimento) {
-		this.taxaRendimento = taxaRendimento;
+	public static void setTaxaRendimento(float taxaRendimento) {
+		ContaPoupanca.taxaRendimento = taxaRendimento;
 	}
 
 	public int getDiaUltimoDeposito() {

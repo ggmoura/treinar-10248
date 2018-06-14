@@ -37,6 +37,12 @@ public class TelaCadastroBB {
 			case 4:
 				sacar();
 				break;
+			case 5:
+				alterarTaxaRendimento();
+				break;
+			case 6:
+				exibirTaxaRendimento();
+				break;
 			case 0:
 				break;
 
@@ -49,13 +55,19 @@ public class TelaCadastroBB {
 		input.close();
 	}
 	
+	private void alterarTaxaRendimento() {
+		System.out.print("Informe a taxa de rendimento: ");
+		float taxaRendimento = input.nextFloat();
+		controller.alterarTaxaRendimento(taxaRendimento);
+	}
+
 	private void sacar() {
 		System.out.print("Valor a ser sacado: ");
 		controller.sacar(input.nextDouble());
 	}
 
 	private void criarConta() {
-		System.out.print("Digite:\n\t1 - Conta Corrente\n\t2 - Conta Poupanï¿½a\n\t3 - Conta Salario\n=> ");
+		System.out.print("Digite:\n\t1 - Conta Corrente\n\t2 - Conta Poupança\n\t3 - Conta Salário\n=> ");
 		int opcao = input.nextInt();
 		switch (opcao) {
 		case 1:
@@ -85,9 +97,6 @@ public class TelaCadastroBB {
 	private void criarContaPoupanca() {
 		ContaPoupanca cp = new ContaPoupanca();
 		criarContaGenerica(cp);
-		System.out.print("Informe a taxa de rendimento: ");
-		float taxaRendimento = input.nextFloat();
-		cp.setTaxaRendimento(taxaRendimento);
 		controller.criarConta(cp);
 	}
 
@@ -119,9 +128,8 @@ public class TelaCadastroBB {
 		double saldo = controller.recuperarSaldo();
 		System.out.println("Saldo atual: " + saldo);
 	}
-	
-	private void imprimirSaldo() {
-		System.out.println("Saldo atual: " + controller.getConta().getSaldo());
+	private void exibirTaxaRendimento() {
+		System.out.println("Taxa rendimento atual: " + controller.recuperarTaxaRendimento());
 	}
 
 	private void depositar() {
@@ -137,6 +145,8 @@ public class TelaCadastroBB {
 			+ "\t2 - Depositar\n"
 			+ "\t3 - Exibir Saldo\n"
 			+ "\t4 - Sacar\n"
+			+ "\t5 - Alterar Taxa de Rendimento\n"
+			+ "\t6 - Exibir Taxa de Rendimento\n"
 			+ "\t\n=> "
 		);
 	}
