@@ -33,4 +33,9 @@ public class ContaPoupanca extends Conta {
 		diaUltimoDeposito = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + " " + "ContaPoupanca [diaUltimoDeposito=" + diaUltimoDeposito + "]";
+	}
+
 }

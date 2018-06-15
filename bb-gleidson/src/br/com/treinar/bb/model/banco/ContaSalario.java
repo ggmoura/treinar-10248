@@ -34,4 +34,9 @@ public class ContaSalario extends Conta implements IProdutoPagavel {
 		super.sacar(this.va1orPagar);
 	}
 
+	@Override
+	public String toString() {
+		return super.toString() + " " + "ContaSalario [diaCreditoSalario=" + diaCreditoSalario + ", va1orPagar=" + va1orPagar + "]";
+	}
+
 }

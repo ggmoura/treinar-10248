@@ -46,13 +46,15 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	
 	@Override
 	public void depositar(double valorDeposito) {
-		double valorDevido = this.limiteCreditoAtual - this.limiteCredito;
+		double valorDevido = this.limiteCredito - this.limiteCreditoAtual;
 		if (valorDevido == 0) {
 			setSaldo(getSaldo() + valorDeposito);
 		} else {
 			if (valorDeposito > valorDevido) {
-				setSaldo(valorDeposito - valorDevido);
 				this.limiteCreditoAtual += valorDevido;
+				setSaldo(valorDeposito - valorDevido);
+			} else {
+				this.limiteCreditoAtual += valorDeposito;				
 			}
 		}
 	}
@@ -70,6 +72,12 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	@Override
 	public void pagarValorMensalidade() {
 		super.sacar(this.va1orPagar);
+	}
+
+	@Override
+	public String toString() {
+		return  super.toString() + " " + "ContaCorrente [va1orPagar=" + va1orPagar + ", limiteCredito=" + limiteCredito + ", limiteCreditoAtual="
+				+ limiteCreditoAtual + "]";
 	}
 	
 }

@@ -51,4 +51,11 @@ public abstract class Conta {
 	public double consultarSaldo() {
 		return this.saldo;
 	}
+
+	@Override
+	public String toString() {
+		return "Conta [numero=" + numero + ", saldo=" + saldo + ", cliente=" + cliente.toString() + "]";
+	}
+	
+	
 }

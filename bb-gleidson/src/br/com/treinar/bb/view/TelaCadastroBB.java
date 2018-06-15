@@ -45,6 +45,8 @@ public class TelaCadastroBB {
 				break;
 			case 7:
 				cobrarMensalidade();
+			case 8:
+				listarContas();
 				break;
 			case 0:
 				break;
@@ -69,8 +71,9 @@ public class TelaCadastroBB {
 	}
 
 	private void sacar() {
+		int posicaoConta = pesquisarConta();
 		System.out.print("Valor a ser sacado: ");
-		boolean sacou = controller.sacar(input.nextDouble());
+		boolean sacou = controller.sacar(input.nextDouble(), posicaoConta);
 		String mensagem = sacou ? "Saque efetuado com sucesso" : "Saldo insuficiente";
 		System.out.println(mensagem);
 	}
@@ -138,7 +141,8 @@ public class TelaCadastroBB {
 		conta.setNumero(numeroConta);
 	}
 	private void exibirSaldo() {
-		double saldo = controller.recuperarSaldo();
+		int posicaoConta = pesquisarConta();
+		double saldo = controller.recuperarSaldo(posicaoConta);
 		System.out.println("Saldo atual: " + saldo);
 	}
 	private void exibirTaxaRendimento() {
@@ -146,10 +150,28 @@ public class TelaCadastroBB {
 	}
 
 	private void depositar() {
+		int posicaoConta = pesquisarConta();
 		System.out.print("Valor a ser depositado: ");
-		controller.depositar(input.nextDouble());
+		controller.depositar(input.nextDouble(), posicaoConta);
 	}
 
+	private int pesquisarConta() {
+		System.out.println("Digite a posição da conta escolhida: ");
+		listarContas();
+		System.out.print("\n=> ");
+		int posicao = input.nextInt();
+		return posicao;
+	}
+
+	private void listarContas() {
+		Conta[] contas = controller.recuperarContas();
+		for (int i = 0; i < contas.length; i++) {
+			if (contas[i] != null) {
+				System.out.println(i + " - " + contas[i]);
+			}
+		}
+	}
+	
 	private static void imprimirMenu() {
 		System.out.print(""
 			+ "Informe a opção:\n"
@@ -160,7 +182,8 @@ public class TelaCadastroBB {
 			+ "\t4 - Sacar\n"
 			+ "\t5 - Alterar Taxa de Rendimento\n"
 			+ "\t6 - Exibir Taxa de Rendimento\n"
-			+ "\t7 - Tarifar contas\n"
+			+ "\t7 - Exibir Taxa de Rendimento\n"
+			+ "\t8 - Listar Contas\n"
 			+ "\t\n=> "
 		);
 	}
