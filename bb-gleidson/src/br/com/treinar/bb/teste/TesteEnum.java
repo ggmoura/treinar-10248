@@ -28,6 +28,12 @@ public class TesteEnum {
 		
 		System.out.println("Ordinal: " + tipoByStr.ordinal() + " Salario minimo: " + tipoByStr.getSalarioMinimo());
 		
+		
+		System.out.print("Informe o ordinal: ");
+		int ordinal = sc.nextInt();
+		TipoCliente novoEnumAPartirDoOrdinal = tiposDeCliente[ordinal];
+		System.out.println(novoEnumAPartirDoOrdinal + " " + novoEnumAPartirDoOrdinal.getSalarioMinimo());
+		
 		sc.close();
 		
 	}
