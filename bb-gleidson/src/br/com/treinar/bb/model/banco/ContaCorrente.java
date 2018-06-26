@@ -1,5 +1,7 @@
 package br.com.treinar.bb.model.banco;
 
+import br.com.treinar.bb.model.tipodado.TipoCliente;
+
 public class ContaCorrente extends Conta implements IProdutoPagavel {
 
 	private double va1orPagar;
@@ -47,6 +49,9 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	@Override
 	public void depositar(double valorDeposito) {
 		double valorDevido = this.limiteCredito - this.limiteCreditoAtual;
+		if (getCliente().getTipoCliente().equals(TipoCliente.ESPECIAL)) {
+			valorDeposito += 1.0;//clientes especiais ganham um real ao depositar
+		}
 		if (valorDevido == 0) {
 			setSaldo(getSaldo() + valorDeposito);
 		} else {
