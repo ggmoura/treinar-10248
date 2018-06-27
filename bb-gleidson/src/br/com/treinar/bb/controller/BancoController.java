@@ -23,7 +23,7 @@ public class BancoController {
 	
 	public void criarConta(Conta conta) {
 		if (posicao < banco.getContas().length) {
-			this.banco.getContas()[posicao++] = conta;			
+			this.banco.getContas()[posicao++] = conta;
 		}
 	}
 
