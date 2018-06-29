@@ -8,6 +8,7 @@ import br.com.treinar.bb.model.banco.Conta;
 import br.com.treinar.bb.model.banco.ContaCorrente;
 import br.com.treinar.bb.model.banco.ContaPoupanca;
 import br.com.treinar.bb.model.banco.ContaSalario;
+import br.com.treinar.bb.model.banco.SaldoInsuficienteException;
 
 public class TelaCadastroBB {
 
@@ -73,9 +74,16 @@ public class TelaCadastroBB {
 	private void sacar() {
 		int posicaoConta = pesquisarConta();
 		System.out.print("Valor a ser sacado: ");
-		boolean sacou = controller.sacar(input.nextDouble(), posicaoConta);
-		String mensagem = sacou ? "Saque efetuado com sucesso" : "Saldo insuficiente";
-		System.out.println(mensagem);
+		try {
+			controller.sacar(input.nextDouble(), posicaoConta);
+			System.out.println("Saque efetuado com sucesso");
+		} catch (SaldoInsuficienteException e) {
+			//Concatenar string utilizando a classe builder StringBuilder
+			StringBuilder sb = new StringBuilder();
+			sb.append("Saldo insuficienete, saldo atual ").append(e.getSaldoAtual());
+			sb.append(".");
+			System.out.println(sb.toString());
+		}
 	}
 
 	private void criarConta() {

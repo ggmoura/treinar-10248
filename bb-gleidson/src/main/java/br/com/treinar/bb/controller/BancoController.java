@@ -4,6 +4,7 @@ import br.com.treinar.bb.model.banco.Banco;
 import br.com.treinar.bb.model.banco.Conta;
 import br.com.treinar.bb.model.banco.ContaPoupanca;
 import br.com.treinar.bb.model.banco.IProdutoPagavel;
+import br.com.treinar.bb.model.banco.SaldoInsuficienteException;
 
 public class BancoController {
 
@@ -35,8 +36,8 @@ public class BancoController {
 		return banco.getContas()[posicao].consultarSaldo();
 	}
 
-	public boolean sacar(double valor, int posicao) {
-		return banco.getContas()[posicao].sacar(valor);
+	public void sacar(double valor, int posicao) throws SaldoInsuficienteException {
+		banco.getContas()[posicao].sacar(valor);
 	}
 
 	public void alterarTaxaRendimento(float novaTaxa) {

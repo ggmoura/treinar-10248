@@ -25,8 +25,7 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	}
 
 	@Override
-	public boolean sacar(double valor) {
-		boolean deuParaSacar = true;
+	public void sacar(double valor) throws SaldoInsuficienteException {
 		if (valor <= getSaldo() + this.limiteCreditoAtual) {
 			if (valor <= getSaldo()) {
 				setSaldo(getSaldo() - valor);
@@ -34,10 +33,7 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 				limiteCreditoAtual = limiteCreditoAtual - (valor - getSaldo());
 				setSaldo(0);
 			}
-		} else {
-			deuParaSacar = false;
 		}
-		return deuParaSacar;
 	}
 	
 	@Override
@@ -76,7 +72,13 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 
 	@Override
 	public void pagarValorMensalidade() {
-		super.sacar(this.va1orPagar);
+		try {
+			super.sacar(this.va1orPagar);
+		} catch (SaldoInsuficienteException e) {
+			//TODO - apos tres meses sem pagar cancela a conta
+			//XXX - 
+			//FIXME - 
+		}
 	}
 
 	@Override

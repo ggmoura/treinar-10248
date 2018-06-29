@@ -17,8 +17,13 @@ public class ContaSalario extends Conta implements IProdutoPagavel {
 	public void depositar(double valor) {
 		setSaldo(getSaldo() + valor);
 	}
-	
 
+	@Override
+	public void sacar(double valor) throws SaldoInsuficienteException {
+		valor += 1;
+		super.sacar(valor);
+	}
+	
 	@Override
 	public double getValorPagar() {
 		return this.va1orPagar;
@@ -31,7 +36,11 @@ public class ContaSalario extends Conta implements IProdutoPagavel {
 
 	@Override
 	public void pagarValorMensalidade() {
-		super.sacar(this.va1orPagar);
+		try {
+			super.sacar(this.va1orPagar);
+		} catch (SaldoInsuficienteException e) {
+			//TODO - apos tres meses sem pagar cancela a conta
+		}
 	}
 
 	@Override

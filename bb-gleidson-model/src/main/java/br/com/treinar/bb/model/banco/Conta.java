@@ -37,13 +37,14 @@ public abstract class Conta {
 		System.out.println("O Objeto foi criado");
 	}
 
-	public boolean sacar(double valor) {
-		boolean deuParaSacar = false;
+	public void sacar(double valor) throws SaldoInsuficienteException {
 		if (valor <= saldo) {
 			saldo -= valor;
-			deuParaSacar = true;
+		} else {
+			SaldoInsuficienteException ex = new SaldoInsuficienteException();
+			ex.setSaldoAtual(getSaldo());
+			throw ex;
 		}
-		return deuParaSacar;
 	}
 	
 	public abstract void depositar(double valor);
