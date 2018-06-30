@@ -3,6 +3,7 @@ package br.com.treinar.bb.view;
 import java.util.Scanner;
 
 import br.com.treinar.bb.controller.BancoController;
+import br.com.treinar.bb.controller.ContaInexistenteException;
 import br.com.treinar.bb.model.Cliente;
 import br.com.treinar.bb.model.banco.Conta;
 import br.com.treinar.bb.model.banco.ContaCorrente;
@@ -49,6 +50,12 @@ public class TelaCadastroBB {
 			case 8:
 				listarContas();
 				break;
+			case 9:
+				excluirContasPorPosicao();
+				break;
+			case 10:
+				excluirContasPorNumero();
+				break;
 			case 0:
 				break;
 
@@ -60,7 +67,17 @@ public class TelaCadastroBB {
 		
 		input.close();
 	}
-	
+
+	private void excluirContasPorNumero() {
+		System.out.print("Informe o numero da conta a ser excluida: ");
+		try {
+			controller.excluirContaPorNumero(input.nextInt());
+			System.out.println("Conta excluida com sucesso");
+		} catch (ContaInexistenteException e) {
+			System.out.println("Conta inexistente");
+		}
+	}
+
 	private void cobrarMensalidade() {
 		controller.cobrarMensalidade();
 	}
@@ -71,6 +88,12 @@ public class TelaCadastroBB {
 		controller.alterarTaxaRendimento(taxaRendimento);
 	}
 
+	
+	private void excluirContasPorPosicao() {
+		int posicaoConta = pesquisarConta();
+		controller.excluirContaPorPosicao(posicaoConta);
+	}
+	
 	private void sacar() {
 		int posicaoConta = pesquisarConta();
 		System.out.print("Valor a ser sacado: ");
@@ -178,9 +201,12 @@ public class TelaCadastroBB {
 //				System.out.println(i + " - " + contas[i]);
 //			}
 //		}
-		for (Conta c : controller.recuperarContas()) {
-			System.out.println();
-		}
+//		for (Conta c : controller.recuperarContas()) {
+//			System.out.println(c);
+//		}
+		//passando funcao como parametro para imprimir
+		controller.recuperarContas().forEach(System.out::println);
+//		controller.recuperarContas().forEach(x -> System.out.println(x));
 	}
 	
 	private static void imprimirMenu() {

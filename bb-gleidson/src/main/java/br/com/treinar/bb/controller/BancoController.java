@@ -1,6 +1,7 @@
 package br.com.treinar.bb.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import br.com.treinar.bb.model.banco.Banco;
@@ -70,5 +71,24 @@ public class BancoController {
 				((IProdutoPagavel) conta).pagarValorMensalidade();
 			}
 		});
+	}
+
+	public void excluirContaPorPosicao(int posicaoConta) {
+		banco.getContas().remove(posicaoConta);
+	}
+
+	public void excluirContaPorNumero(int numeroConta) throws ContaInexistenteException {
+		Iterator<Conta> iterator = banco.getContas().iterator();
+		Conta c = null;
+		while (iterator.hasNext()) {
+			c = iterator.next();
+			if (c.getNumero() == numeroConta) {
+				iterator.remove();
+				break;
+			}
+		}
+		if (c == null) {
+			throw new ContaInexistenteException();
+		}
 	}
 }
