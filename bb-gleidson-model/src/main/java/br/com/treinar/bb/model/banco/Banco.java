@@ -1,19 +1,21 @@
 package br.com.treinar.bb.model.banco;
 
+import java.util.List;
+
 public class Banco {
 
 	public static final int TEMPO_FUNCIONAMENTO;
-	private Conta[] contas;
+	private List<Conta> contas;
 
 	static {
 		TEMPO_FUNCIONAMENTO = 10;
 	}
 
-	public Conta[] getContas() {
+	public List<Conta> getContas() {
 		return contas;
 	}
 
-	public void setContas(Conta[] contas) {
+	public void setContas(List<Conta> contas) {
 		this.contas = contas;
 	}
 

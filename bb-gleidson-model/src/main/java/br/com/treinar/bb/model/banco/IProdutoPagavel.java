@@ -1,6 +1,6 @@
 package br.com.treinar.bb.model.banco;
 
-public interface IProdutoPagavel {
+public interface IProdutoPagavel extends IProduto {
 
 	double getValorPagar();
 

@@ -172,11 +172,14 @@ public class TelaCadastroBB {
 	}
 
 	private void listarContas() {
-		Conta[] contas = controller.recuperarContas();
-		for (int i = 0; i < contas.length; i++) {
-			if (contas[i] != null) {
-				System.out.println(i + " - " + contas[i]);
-			}
+//		Conta[] contas = controller.recuperarContas();
+//		for (int i = 0; i < contas.length; i++) {
+//			if (contas[i] != null) {
+//				System.out.println(i + " - " + contas[i]);
+//			}
+//		}
+		for (Conta c : controller.recuperarContas()) {
+			System.out.println();
 		}
 	}
 	
