@@ -13,6 +13,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -32,6 +33,7 @@ public class BBUtil {
 	private static BBUtil instance;
 	private Properties prop;
 	private Banco banco;
+	private Gson gson;
 
 	static {
 		instance = new BBUtil();
@@ -41,6 +43,14 @@ public class BBUtil {
 		super();
 		loadProperties();
 		loadData();
+		buildGson();
+	}
+
+	private void buildGson() {
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		gsonBuilder.setPrettyPrinting();
+		gsonBuilder.registerTypeAdapter(Conta.class, new ContaDeserializer());
+		this.gson = gsonBuilder.create();
 	}
 
 	private void loadData() {
@@ -55,10 +65,7 @@ public class BBUtil {
 				linha = br.readLine();
 			}
 			is.close();
-			GsonBuilder gsonBuilder = new GsonBuilder();
-			gsonBuilder.setPrettyPrinting();
-			gsonBuilder.registerTypeAdapter(Conta.class, new ContaDeserializer());
-			banco = gsonBuilder.create().fromJson(bancoText.toString(), Banco.class);
+			banco = gson.fromJson(bancoText.toString(), Banco.class);
 			if (banco.getContas() == null) {
 				banco.setContas(new ArrayList<>());
 			}
@@ -74,10 +81,7 @@ public class BBUtil {
 			OutputStream os = new FileOutputStream("banco.json", Boolean.FALSE);
 			OutputStreamWriter osw = new OutputStreamWriter(os);
 			BufferedWriter bw = new BufferedWriter(osw);
-			GsonBuilder gsonBuilder = new GsonBuilder();
-			gsonBuilder.setPrettyPrinting();
-			gsonBuilder.registerTypeAdapter(Conta.class, new ContaDeserializer());
-			bw.write(gsonBuilder.create().toJson(banco));
+			bw.write(gson.toJson(banco));
 			bw.close();
 		} catch (Exception e) {
 			System.out.println("Erro ao persistir os dados");
@@ -130,3 +134,4 @@ public class BBUtil {
 	}
 
 }
+
