@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 
-class TestaSaida {
+public class TestaSaida {
 	public static void main(String[] args) throws IOException {
 		OutputStream os = new FileOutputStream("data/saida.txt", Boolean.TRUE);
 		OutputStreamWriter osw = new OutputStreamWriter(os);

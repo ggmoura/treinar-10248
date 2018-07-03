@@ -4,7 +4,15 @@ public class ContaSalario extends Conta implements IProdutoPagavel {
 
 	private int diaCreditoSalario;
 	private double va1orPagar;
-
+	private static TipoConta type;
+	
+	static {
+		type = TipoConta.SALARIO;
+	}
+	@Override
+	public TipoConta getType() {
+		return type;
+	}
 	public int getDiaCreditoSalario() {
 		return diaCreditoSalario;
 	}

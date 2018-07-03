@@ -1,6 +1,5 @@
 package br.com.treinar.bb.controller;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,14 +8,14 @@ import br.com.treinar.bb.model.banco.Conta;
 import br.com.treinar.bb.model.banco.ContaPoupanca;
 import br.com.treinar.bb.model.banco.IProdutoPagavel;
 import br.com.treinar.bb.model.banco.SaldoInsuficienteException;
+import br.com.treinar.bb.util.BBUtil;
 
 public class BancoController {
 	
 	private Banco banco;
 
 	public BancoController() {
-		banco = new Banco();
-		banco.setContas(new ArrayList<>());
+		banco = BBUtil.getInstance().getBanco();
 	}
 
 	public List<Conta> recuperarContas() {

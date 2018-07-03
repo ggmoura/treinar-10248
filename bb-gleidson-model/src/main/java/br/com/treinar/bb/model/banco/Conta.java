@@ -7,6 +7,12 @@ public abstract class Conta {
 	private int numero;
 	private double saldo;
 	private Cliente cliente;
+	
+	public abstract TipoConta getType();
+
+	public Conta() {
+		super();
+	}
 
 	public int getNumero() {
 		return numero;
@@ -32,11 +38,6 @@ public abstract class Conta {
 		this.cliente = cliente;
 	}
 
-	public Conta() {
-		super();
-		System.out.println("O Objeto foi criado");
-	}
-
 	public void sacar(double valor) throws SaldoInsuficienteException {
 		if (valor <= saldo) {
 			saldo -= valor;
@@ -57,6 +58,5 @@ public abstract class Conta {
 	public String toString() {
 		return "Conta [numero=" + numero + ", saldo=" + saldo + ", cliente=" + cliente.toString() + "]";
 	}
-	
 	
 }

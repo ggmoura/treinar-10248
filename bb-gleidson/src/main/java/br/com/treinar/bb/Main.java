@@ -12,6 +12,7 @@ public class Main {
 		System.out.println(timeout);
 		TelaCadastroBB cadastro = new TelaCadastroBB();
 		cadastro.iniciarOperacao();
+		util.persistirDados();
 		System.out.println(util.getProperty("mensagemFinal"));
 	}
 	

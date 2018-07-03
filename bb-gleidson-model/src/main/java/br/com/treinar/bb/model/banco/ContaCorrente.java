@@ -7,6 +7,16 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	private double va1orPagar;
 	private double limiteCredito;
 	private double limiteCreditoAtual;
+	private static TipoConta type;
+	
+	static {
+		type = TipoConta.CORRENTE;
+	}
+	
+	@Override
+	public TipoConta getType() {
+		return type;
+	}
 
 	public double getLimiteCredito() {
 		return limiteCredito;
@@ -45,7 +55,7 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	@Override
 	public void depositar(double valorDeposito) {
 		double valorDevido = this.limiteCredito - this.limiteCreditoAtual;
-		if (getCliente().getTipoCliente().equals(TipoCliente.ESPECIAL)) {
+		if (getCliente().getTipoCliente() != null && getCliente().getTipoCliente().equals(TipoCliente.ESPECIAL)) {
 			valorDeposito += 1.0;//clientes especiais ganham um real ao depositar
 		}
 		if (valorDevido == 0) {
