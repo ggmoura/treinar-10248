@@ -6,15 +6,10 @@ public class ContaPoupanca extends Conta {
 
 	private static float taxaRendimento;
 	private int diaUltimoDeposito;
-	private static TipoConta type;
-	
-	static {
-		type = TipoConta.POUPANCA;
-	}
-	
+
 	@Override
 	public TipoConta getType() {
-		return type;
+		return TipoConta.POUPANCA;
 	}
 	
 	static {

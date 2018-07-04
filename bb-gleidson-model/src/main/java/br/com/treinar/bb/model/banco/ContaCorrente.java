@@ -7,15 +7,10 @@ public class ContaCorrente extends Conta implements IProdutoPagavel {
 	private double va1orPagar;
 	private double limiteCredito;
 	private double limiteCreditoAtual;
-	private static TipoConta type;
-	
-	static {
-		type = TipoConta.CORRENTE;
-	}
-	
+
 	@Override
 	public TipoConta getType() {
-		return type;
+		return TipoConta.CORRENTE;
 	}
 
 	public double getLimiteCredito() {

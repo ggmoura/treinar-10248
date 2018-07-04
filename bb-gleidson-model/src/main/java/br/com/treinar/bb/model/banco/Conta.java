@@ -7,7 +7,6 @@ public abstract class Conta {
 	private int numero;
 	private double saldo;
 	private Cliente cliente;
-	
 	public abstract TipoConta getType();
 
 	public Conta() {

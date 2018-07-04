@@ -1,16 +1,17 @@
 {
+  "TEMPO_FUNCIONAMENTO": 10,
   "contas": [
     {
       "va1orPagar": 100.0,
-      "type": "CORRENTE",
       "limiteCredito": 10000.0,
       "limiteCreditoAtual": 10000.0,
       "numero": 10481,
-      "saldo": 0.0,hr
+      "saldo": 0.0,
       "cliente": {
         "nome": "Maria Sophia",
-        "cpf": "55546265302"
-      }
+        "cpf": "65465465"
+      },
+      "type": "CORRENTE"
     }
   ]
 }

@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -20,6 +21,8 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import br.com.treinar.bb.model.banco.Banco;
 import br.com.treinar.bb.model.banco.Conta;
@@ -50,6 +53,8 @@ public class BBUtil {
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.setPrettyPrinting();
 		gsonBuilder.registerTypeAdapter(Conta.class, new ContaDeserializer());
+		gsonBuilder.registerTypeAdapter(Conta.class, new ContaSerializer());
+		gsonBuilder.excludeFieldsWithModifiers(Modifier.TRANSIENT); 
 		this.gson = gsonBuilder.create();
 	}
 
@@ -65,7 +70,7 @@ public class BBUtil {
 				linha = br.readLine();
 			}
 			is.close();
-			banco = gson.fromJson(bancoText.toString(), Banco.class);
+			banco = converterParaBanco(bancoText.toString());
 			if (banco.getContas() == null) {
 				banco.setContas(new ArrayList<>());
 			}
@@ -76,16 +81,24 @@ public class BBUtil {
 		}
 	}
 
+	public Banco converterParaBanco(String bancoText) {
+		return gson.fromJson(bancoText.toString(), Banco.class);
+	}
+
 	public void persistirDados() {
 		try {
 			OutputStream os = new FileOutputStream("banco.json", Boolean.FALSE);
 			OutputStreamWriter osw = new OutputStreamWriter(os);
 			BufferedWriter bw = new BufferedWriter(osw);
-			bw.write(gson.toJson(banco));
+			bw.write(serializarBanco(this.banco));
 			bw.close();
 		} catch (Exception e) {
 			System.out.println("Erro ao persistir os dados");
 		}
+	}
+
+	public String serializarBanco(Banco banco) {
+		return gson.toJson(banco);
 	}
 
 	private void loadProperties() {
@@ -110,15 +123,24 @@ public class BBUtil {
 		return banco;
 	}
 
+	private class ContaSerializer implements JsonSerializer<Conta> {
+		@Override
+		public JsonElement serialize(Conta conta, Type type, JsonSerializationContext context) {
+			final JsonElement contaJson = context.serialize(conta);
+			contaJson.getAsJsonObject().addProperty("type", conta.getType().toString());
+			return contaJson;
+		}
+	}
+	
 	private class ContaDeserializer implements JsonDeserializer<Conta> {
 
 		@Override
-		public Conta deserialize(JsonElement json, Type arg1, JsonDeserializationContext context)
+		public Conta deserialize(JsonElement json, Type type, JsonDeserializationContext context)
 				throws JsonParseException {
 			JsonObject jsonObject = json.getAsJsonObject();
-			JsonElement type = jsonObject.get("type");
-			if (type != null) {
-				switch (TipoConta.valueOf(type.getAsString())) {
+			JsonElement t = jsonObject.get("type");
+			if (t != null) {
+				switch (TipoConta.valueOf(t.getAsString())) {
 				case CORRENTE:
 					return context.deserialize(jsonObject, ContaCorrente.class);
 				case POUPANCA:
@@ -129,8 +151,7 @@ public class BBUtil {
 			}
 			return null;
 		}
-		
-		
+
 	}
 
 }

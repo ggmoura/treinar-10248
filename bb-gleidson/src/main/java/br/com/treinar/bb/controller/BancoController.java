@@ -65,11 +65,19 @@ public class BancoController {
 //		});
 		
 //		Utilizando expressao lambda
-		banco.getContas().forEach(conta -> {
-			if (conta instanceof IProdutoPagavel) {
-				((IProdutoPagavel) conta).pagarValorMensalidade();
-			}
-		});
+			new Thread(() -> {
+				try {
+					Thread.sleep(15000);
+					banco.getContas().forEach(conta -> {
+						if (conta instanceof IProdutoPagavel) {
+							((IProdutoPagavel) conta).pagarValorMensalidade();
+						}
+					});
+					System.out.println("Tarifou as contas");
+				} catch (Exception e) {
+					System.out.println("Erro ao processar");
+				}
+			}).start();
 	}
 
 	public void excluirContaPorPosicao(int posicaoConta) {
