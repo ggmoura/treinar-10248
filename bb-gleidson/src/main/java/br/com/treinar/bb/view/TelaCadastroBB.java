@@ -1,6 +1,9 @@
 package br.com.treinar.bb.view;
 
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
+
+import javax.swing.JOptionPane;
 
 import br.com.treinar.bb.controller.BancoController;
 import br.com.treinar.bb.controller.ContaInexistenteException;
@@ -79,7 +82,10 @@ public class TelaCadastroBB {
 	}
 
 	private void cobrarMensalidade() {
-		controller.cobrarMensalidade();
+		CompletableFuture<Integer> completableFuture = controller.cobrarMensalidade();
+		completableFuture.thenAccept((retorno) -> {
+			JOptionPane.showMessageDialog(null, retorno);
+		});
 	}
 
 	private void alterarTaxaRendimento() {
@@ -219,7 +225,7 @@ public class TelaCadastroBB {
 			+ "\t4 - Sacar\n"
 			+ "\t5 - Alterar Taxa de Rendimento\n"
 			+ "\t6 - Exibir Taxa de Rendimento\n"
-			+ "\t7 - Exibir Taxa de Rendimento\n"
+			+ "\t7 - Cobrar Mensalidade\n"
 			+ "\t8 - Listar Contas\n"
 			+ "\t\n=> "
 		);

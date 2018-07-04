@@ -2,6 +2,8 @@ package br.com.treinar.bb.controller;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import br.com.treinar.bb.model.banco.Banco;
 import br.com.treinar.bb.model.banco.Conta;
@@ -46,7 +48,7 @@ public class BancoController {
 		return ContaPoupanca.getTaxaRendimento();
 	}
 
-	public void cobrarMensalidade() {
+	public CompletableFuture<Integer> cobrarMensalidade() {
 //		Conta[] contas = banco.getContas();
 //		for (int i = 0; i < contas.length; i++) {
 //			if (contas[i] instanceof IProdutoPagavel) {
@@ -63,21 +65,39 @@ public class BancoController {
 //				}
 //			}
 //		});
-		
-//		Utilizando expressao lambda
-			new Thread(() -> {
-				try {
-					Thread.sleep(15000);
-					banco.getContas().forEach(conta -> {
-						if (conta instanceof IProdutoPagavel) {
-							((IProdutoPagavel) conta).pagarValorMensalidade();
-						}
-					});
-					System.out.println("Tarifou as contas");
-				} catch (Exception e) {
-					System.out.println("Erro ao processar");
-				}
-			}).start();
+
+//			Utilizando expressao lambda
+//			new Thread(() -> {
+//				try {
+//					Thread.sleep(15000);
+//					banco.getContas().forEach(conta -> {
+//						if (conta instanceof IProdutoPagavel) {
+//							((IProdutoPagavel) conta).pagarValorMensalidade();
+//						}
+//					});
+//					System.out.println("Tarifou as contas");
+//				} catch (Exception e) {
+//					System.out.println("Erro ao processar");
+//				}
+//			}).start();
+		//Utilizando completablefuture para que o metodo que chamar este metodo consiga
+		//tratar o retorno, e nao seja necessario esperar a execucao
+		CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
+			try {
+				AtomicInteger count = new AtomicInteger(0);
+				banco.getContas().forEach(conta -> {
+					if (conta instanceof IProdutoPagavel) {
+						count.incrementAndGet();
+						((IProdutoPagavel) conta).pagarValorMensalidade();
+					}
+				});
+				Thread.sleep(5000);
+				return count.get();
+			} catch (Exception e) {
+				return null;
+			}
+		});
+		return future;
 	}
 
 	public void excluirContaPorPosicao(int posicaoConta) {
