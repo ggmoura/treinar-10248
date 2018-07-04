@@ -1,7 +1,6 @@
 package br.com.treinar.bb.teste;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 import org.junit.Assert;
 import org.junit.Before;
