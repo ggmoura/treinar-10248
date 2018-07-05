@@ -3,6 +3,8 @@ package br.com.treinar.bb.controller;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import br.com.treinar.bb.model.banco.Banco;
@@ -96,7 +98,7 @@ public class BancoController {
 			} catch (Exception e) {
 				return null;
 			}
-		});
+		}, Executors.newFixedThreadPool(10));
 		return future;
 	}
 
