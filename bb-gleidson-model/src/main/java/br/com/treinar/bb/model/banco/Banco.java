@@ -2,11 +2,8 @@ package br.com.treinar.bb.model.banco;
 
 import java.util.List;
 
-import com.google.gson.annotations.Expose;
-
 public class Banco {
 
-	@Expose(serialize = true, deserialize = false)
 	public static final int TEMPO_FUNCIONAMENTO;
 	private List<Conta> contas;
 
